@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
-# Imports all keys from hidden keys file
 from . import keys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,16 +23,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = keys.SECRET_KEY
 
+# Custum user model students
+AUTH_USER_MODEL = 'students.Student'
+
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    # required dependencies
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # project apps
+    'students.apps.StudentsConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -66,23 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ptonprowl.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-# TODO: Change to mySQL database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'prowl_db',
-        'USER': 'root',
-        'PASSWORD': keys.ROOT_PW,
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -107,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EST'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

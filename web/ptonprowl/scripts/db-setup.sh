@@ -11,6 +11,5 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
 mysql -u root -p -e "DROP DATABASE IF EXISTS prowl_db; CREATE DATABASE
 prowl_db;"
-
-cd "$parent_path"
-python3 ../manage.py migrate
+python3 "$parent_path"/../manage.py makemigrations
+python3 "$parent_path"/../manage.py migrate
