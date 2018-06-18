@@ -12,5 +12,6 @@ class AccountDetails(generic.DetailView):
     model = Student
     template_name = 'students/account.html'
 
+    # delivers user object upon request
     def get_object(self):
             return get_object_or_404(Student, netid=self.kwargs.get('netid'))

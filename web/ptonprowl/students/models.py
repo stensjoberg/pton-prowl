@@ -72,7 +72,7 @@ class Student(AbstractBaseUser):
     EMAIL_FIELD = 'email'
 
     # required field upon account creation
-    REQUIRED_FIELDS = [ 'email', 'full_name', 'class_year']
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email + " | " + self.full_name + " " + self.class_year

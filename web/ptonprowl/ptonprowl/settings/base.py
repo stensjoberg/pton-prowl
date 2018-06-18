@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cas_ng',
 
     # project apps
     'students.apps.StudentsConfig',
@@ -54,6 +55,25 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#
+# Legacy lists for django_cas_ng
+#
+
+MIDDLEWARE_CLASSES = [
+    'django_cas_ng.middleware.CASMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django_cas_ng.backends.CASBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# url to princeton's central authentication service
+CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
+
+# CAS will attempt to set all attributes from princeton netID to django backend
+CAS_APPLY_ATTRIBUTES_TO_USER = True
 
 ROOT_URLCONF = 'ptonprowl.urls'
 
