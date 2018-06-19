@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django_cas_ng import views as cas_views
 
 urlpatterns = [
-        path('students/', include('students.urls')),
+    path('students/', include('students.urls')),
     path('admin/', admin.site.urls),
-]
 
+    # CAS paths (NOTE: change to /students/.../?)
+    path('accounts/login/', cas_views.login),
+    path('accounts/logout/', cas_views.logout),
+]
