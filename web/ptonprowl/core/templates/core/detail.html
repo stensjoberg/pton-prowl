@@ -1,0 +1,10 @@
+<h1>{{ course.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<ul>
+{# reverse lookup on codes with course foreignkey relationship #}
+{% for code in course.code_set.all %}
+      <li>{{ code.code }}</li>
+{% endfor %}
+</ul>

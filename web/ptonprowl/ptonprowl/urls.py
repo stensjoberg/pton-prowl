@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # CAS paths (NOTE: change to /students/.../?)
-    path('accounts/login/', cas_views.login),
-    path('accounts/logout/', cas_views.logout),
+    path('login/', cas_views.login, name='login'),
+    path('logout/', cas_views.logout, name='logout'),
 ]

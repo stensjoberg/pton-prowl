@@ -2,6 +2,13 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}" />
 
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.full_name }}</p>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+    <p><a href="{% url 'login' %}">Login</a></p>
+{% endif %}
+
 {% if course_list %}
   <ul>
     {% for course in course_list %}

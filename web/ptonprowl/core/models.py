@@ -12,7 +12,7 @@ class Course(models.Model):
 
 class Code(models.Model):
     code = models.CharField(max_length=255, unique=True, primary_key=True)
-    # unique??!
+
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):

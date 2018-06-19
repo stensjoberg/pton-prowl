@@ -1,4 +1,5 @@
 # django imports
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
@@ -11,8 +12,11 @@ class IndexView(generic.ListView):
     context_object_name = 'course_list'
 
     def get_queryset(self):
-        return Course.objects.order_by('-title')[:5]
+        return Course.objects.order_by('-title')
 
-class DetailView(generic.DetailView):
+class DetailView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
     model = Course
     template_name = 'core/detail.html'
