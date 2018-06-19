@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 class StudentManager(BaseUserManager):
-    def create_user(self, netid, email, full_name, class_year, password=None):
+    def create_user(self, netid, password=None):
         """
         Creates and saves a User with the given netid, email and password.
         """
@@ -13,25 +13,19 @@ class StudentManager(BaseUserManager):
 
         user = self.model(
             netid=netid,
-            email=self.normalize_email(email),
-            full_name=full_name,
-            class_year=class_year,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, netid, email, full_name, class_year, password):
+    def create_superuser(self, netid, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(
             netid,
-            email,
-            full_name,
-            class_year,
             password=password,
         )
         user.is_admin = True
