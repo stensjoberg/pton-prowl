@@ -12,7 +12,7 @@ from courses_groups.models import Course, CourseID
 
 class Command(BaseCommand):
     help = "Imports courses from the Princeton Registrar Website"
-    
+
     def handle(self, *args, **options):
 
         self.stdout.write("Accessing registrar's website...")
@@ -32,35 +32,35 @@ class Command(BaseCommand):
         for course in soup.find_all('tr'):
 
             # unique course number one-to-one per course
-            unique_number = course.contents[1]
+            id = course.contents[1]
 
             # unique course id NOT one-on-one however
-            courseids = course.contents[3]
+            course_codes = course.contents[3]
 
             # full natural langauge title of course
             title = course.contents[5]
 
             # try-except because some of the soup does not have string child
             try:
-                unique_number = int(unique_number.string)
-                courseids = courseids.stripped_strings
+                id = int(unique_number.string)
+                course_codes = courseids.stripped_strings
                 title = title.string.replace('\n', '')
 
                 course = Course(
-                    number=unique_number,
+                    id=id,
                     title=title,
                 )
 
                 self.stdout.write("Added course " + course.__str__())
                 course.save()
 
-                for id in courseids:
-                    id = id.replace(' ', '')
-                    courseid = CourseID(
-                        id=id,
+                for code in course_codes:
+                    code = id.replace(' ', '')
+                    course_code = CourseCode(
+                        code=code,
                         course=course
                     )
-                    self.stdout.write("\tAdded ID " + id)
+                    self.stdout.write("\tAdded ID " + code)
                     courseid.save()
 
 
