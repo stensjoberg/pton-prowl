@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand, CommandError
 
 # Project imports
-from courses_groups.models import Course, Code
+from core.models import Course, Code
 
 class Command(BaseCommand):
     help = "Imports courses from the Princeton Registrar Website"
