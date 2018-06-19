@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand, CommandError
 
 # Project imports
-from courses_groups.models import Course, CourseID
+from courses_groups.models import Course, Code
 
 class Command(BaseCommand):
     help = "Imports courses from the Princeton Registrar Website"
@@ -35,15 +35,15 @@ class Command(BaseCommand):
             id = course.contents[1]
 
             # unique course id NOT one-on-one however
-            course_codes = course.contents[3]
+            codes = course.contents[3]
 
             # full natural langauge title of course
             title = course.contents[5]
 
             # try-except because some of the soup does not have string child
             try:
-                id = int(unique_number.string)
-                course_codes = courseids.stripped_strings
+                id = int(id.string)
+                codes = codes.stripped_strings
                 title = title.string.replace('\n', '')
 
                 course = Course(
@@ -54,9 +54,9 @@ class Command(BaseCommand):
                 self.stdout.write("Added course " + course.__str__())
                 course.save()
 
-                for code in course_codes:
+                for code in codes:
                     code = id.replace(' ', '')
-                    course_code = CourseCode(
+                    code = Code(
                         code=code,
                         course=course
                     )
