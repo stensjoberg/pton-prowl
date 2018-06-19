@@ -19,6 +19,7 @@ from django_cas_ng import views as cas_views
 
 urlpatterns = [
     path('students/', include('students.urls')),
+    path('core/', include('core.urls')),
     path('admin/', admin.site.urls),
 
     # CAS paths (NOTE: change to /students/.../?)

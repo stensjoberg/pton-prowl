@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}" />
+
+{% if course_list %}
+  <ul>
+    {% for course in course_list %}
+      <li><a href="{% url 'core:detail' course.id %}">{{ course.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No courses available.</p>
+{% endif %}
