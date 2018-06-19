@@ -27,7 +27,6 @@ class Command(BaseCommand):
 
         self.stdout.write("Parsing and importing courses to database...")
 
-
         # tr is a section in registrars soup
         for course in soup.find_all('tr'):
 
@@ -55,15 +54,13 @@ class Command(BaseCommand):
                 course.save()
 
                 for code in codes:
-                    code = id.replace(' ', '')
+                    code = code.replace(' ', '')
                     code = Code(
                         code=code,
                         course=course
                     )
-                    self.stdout.write("\tAdded ID " + code)
-                    courseid.save()
-
-
+                    self.stdout.write("\tAdded ID " + code.__str__())
+                    code.save()
 
             except Exception:
                 self.stderr.write(traceback.format_exc())
