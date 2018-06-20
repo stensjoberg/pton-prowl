@@ -30,10 +30,27 @@ Then, in order to install all the required Python packages run:
 
     pip3 install -r requirements.txt
 
-Next, setup a mySQL database and configure the database settings in
+Next, setup a mySQL database and configure ther database settings in
 /settings/base.py to match your mySQL configurations.
 
-You can use the reset-db bash script to setup the database and do the initial
-migration, just run it:
+Next, create keys.py in the settings folder adding the following lines:
+
+    # WARNING: SECRET CONSTANTS SHOULD NEVER BE UPLOADED TO PUBLIC REPO
+    # NOTE: keys.py should always explicitly be part of .gitignore
+
+    ROOT_PW = '<your_sql_pw>'
+    SECRET_KEY = '<your_own_secret_key>'
+
+You can now use the reset-db bash script to setup the database and do the
+initial migration, just run it like so:
 
     bash ~/bin/reset-db.sh
+
+If you want the current courses imported from the Princeton Registrar's website,
+you can run:
+
+    python3 manage.py getcourses
+
+Finally, you can run the server locally with:
+
+    python3 manage.py runserver
