@@ -20,3 +20,9 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 
     model = Course
     template_name = 'core/detail.html'
+
+def add_course(request, id):
+    course = get_object_or_404(Course, pk=id)
+    course.add_student(user)
+
+    return HttpResponseRedirect(reverse('core', args(course.id)))
