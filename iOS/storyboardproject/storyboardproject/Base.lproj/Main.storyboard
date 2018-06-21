@@ -413,7 +413,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Zra-ds-lCM"/>
         <segue reference="ULI-Sf-FOo"/>
-        <segue reference="jjE-xb-DIy"/>
+        <segue reference="BZR-G7-mJF"/>
     </inferredMetricsTieBreakers>
 </document>
