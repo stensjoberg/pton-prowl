@@ -2,8 +2,9 @@ from django.db import models
 
 from students.models import Student
 
-# course model
-
+#
+# A Princeton course model includes unique id, codes, title and students
+#
 class Course(models.Model):
 
     # unique course number and pk
@@ -24,8 +25,11 @@ class Course(models.Model):
 
     # returns string representation
     def __str__(self):
-        return str(self.id) + ": " + self.title
+        return self.title + " (" + str(self.id) + ")"
 
+#
+# A Princeton course code like 'COS216', has the code itself and its course
+#
 class Code(models.Model):
 
     # the code (and pk)
@@ -35,8 +39,11 @@ class Code(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.code + " - " + self.course.__str__()
+        return self.code
 
+#
+# A study group has an associated course and member students
+#
 class Group(models.Model):
 
     # each course has many groups
@@ -50,6 +57,7 @@ class Group(models.Model):
         self.course = course
         return self.course
 
+    # adds a student to the course through fk relationship
     def add_student(self, student):
 
         if student.course_set.get(id=self.course.id) is None:
@@ -58,3 +66,6 @@ class Group(models.Model):
         self.students.add(student)
         self.save()
         return self.students.get(netid=student.netid)
+
+    def __str__(self):
+        return self.course.__str__() + " (" + str(self.id) + ")"

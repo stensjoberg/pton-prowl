@@ -60,6 +60,13 @@ class Student(AbstractBaseUser):
 
     objects = StudentManager()
 
+
+    # adds enrolled course to student
+    def add_course(self, course):
+        self.courses.add(course)
+        self.save()
+        return self.courses.get(id=student.id)
+
     # AbstractBaseUser requires unique identifier if using standard backend
     # TODO: switch to non-standard pton CAS backend (ask michael?)
     USERNAME_FIELD = 'netid'
