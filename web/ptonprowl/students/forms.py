@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from students.models import Student
+from core.models import Course, Group
 
 class AdminStudentCreationForm(forms.ModelForm):
     """"A form for creating new users. Includes all the required
@@ -28,7 +30,7 @@ class AdminStudentCreationForm(forms.ModelForm):
             user.save()
         return user
 
-class AdminStudentChangeForm(forms.ModelForm):
+class StudentAdminForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
     password hash display field.
@@ -38,6 +40,45 @@ class AdminStudentChangeForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('netid', 'email', 'full_name', 'class_year', 'password', 'is_active', 'is_admin')
+
+
+    courses = forms.ModelMultipleChoiceField(
+        queryset=Course.objects.all(),
+        required=False,
+        widget=FilteredSelectMultiple(
+            verbose_name='Courses',
+            is_stacked=False
+        )
+    )
+
+    groups = forms.ModelMultipleChoiceField(
+        queryset=Group.objects.all(),
+        required=False,
+        widget=FilteredSelectMultiple(
+            verbose_name='Groups',
+            is_stacked=False
+        )
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(StudentAdminForm, self).__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['courses'].initial = self.instance.course_set.all()
+            self.fields['groups'].initial = self.instance.group_set.all()
+
+
+    def save(self, commit=True):
+        student = super(StudentAdminForm, self).save(commit=False)
+        if commit:
+            student.save()
+
+        if student.pk:
+            student.course_set.set(self.cleaned_data['courses'])
+            student.group_set.set(self.cleaned_data['groups'])
+            print(self)
+            self.save_m2m()
+
+        return student
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

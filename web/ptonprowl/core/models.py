@@ -23,6 +23,13 @@ class Course(models.Model):
         self.save()
         return self.students.get(netid=student.netid)
 
+    # remove student from course
+    def remove_student(self, student):
+        student = self.students.get(netid=student.netid)
+        self.student.remove(student)
+        self.save()
+        return student
+
     # returns string representation
     def __str__(self):
         return self.title + " (" + str(self.id) + ")"
@@ -55,17 +62,25 @@ class Group(models.Model):
     # sets this group's course
     def set_course(self, course):
         self.course = course
+        self.save()
         return self.course
 
     # adds a student to the course through fk relationship
     def add_student(self, student):
 
-        if student.course_set.get(id=self.course.id) is None:
-            raise ValueError("Student not in group's course")
+        #if student.course_set.get(id=self.course.id) is None:
+        #    raise ValueError("Student not in group's course")
 
         self.students.add(student)
         self.save()
         return self.students.get(netid=student.netid)
+
+    # remove student from group
+    def remove_student(self, student):
+        student = self.students.get(netid=student.netid)
+        self.student.remove(student)
+        self.save()
+        return student
 
     def __str__(self):
         return self.course.__str__() + " (" + str(self.id) + ")"

@@ -15,13 +15,13 @@ class CodeInline(admin.TabularInline):
         return False
 
 class CourseAdmin(admin.ModelAdmin):
-    filter_horizontal = ['students',]
     fieldsets = [
         ('Course Info',     {'fields': ['title','students']}),
     ]
 
-    inlines = [CodeInline,]
-    readonly_fields = ['id',]
+    filter_horizontal = ['students',]
+
+    #inlines = [CodeInline,]
 
 class GroupAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -29,7 +29,7 @@ class GroupAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = ['students']
 
-    readonly_fields = ['course',]
+    readonly_fields = ['course']
 
 
 admin.site.register(Course, CourseAdmin)
