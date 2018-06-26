@@ -54,12 +54,10 @@ class Student(AbstractBaseUser):
     class_year = models.CharField(max_length=4,
                                  help_text="Your class year, <em>YYYY</em>")
 
-
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = StudentManager()
-
 
     # adds enrolled course to student
     def add_course(self, course):

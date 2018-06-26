@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}My amazing site{% endblock %} - Prowl</title>
+</head>
+
+<body>
+    <div id="leftdiv">
+        {% block leftdiv %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="middiv">
+        {% block middiv %}{% endblock %}
+    </div>
+    <div id ="rightdiv">
+        {% block rightdiv %}{% endblock %}
+    </div>
+</body>
+</html>

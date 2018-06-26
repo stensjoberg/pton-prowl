@@ -1,33 +1,31 @@
-{% load static %}
+{% extends "core/base.html" %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}" />
+{% block title %}Index{% endblock %}
+
+
+
+
+{% block leftdiv %}
 
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.full_name }}</p>
     <p><a href="{% url 'logout' %}">Logout</a></p>
-    {% else %}
+{% else %}
     <p><a href="{% url 'login' %}">Login</a></p>
 {% endif %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h2>Enrolled Courses</h2>
-<ul>
-  {% for course in user.course_set.all %}
-    <li><a href="{% url 'core:detail' course.id %}">{{ course.title }}</a></li>
-  {% endfor %}
-</ul>
-
-<h2>All Courses</h2>
-{% if course_list %}
-    {% for course in course_list %}
-      <form action="{% url 'core:enroll' course.id %}" method="post">
-        {% csrf_token %}
-      <input type="radio" name="course" id="course.id" value="{{ course.id }}" />
-      <label for="course.id">{{ course.title }}</label><br />
-      <input type="submit" value="Add" />
-    </form>
+  <h2>Enrolled Courses</h2>
+  <ul>
+    {% for course in user.course_set.all %}
+      <li><a href="{% url 'core:detail' course.id %}">{{ course.title }}</a></li>
     {% endfor %}
-{% else %}
-    <p>No courses available.</p>
-{% endif %}
+  </ul>
+
+  {% for course in user.course_set.all %}
+      {% block coursediv %}
+        {% include "core/enroll.html" %}
+      {% endblock coursediv %}
+  {% endfor %}
+{% endblock leftdiv %}

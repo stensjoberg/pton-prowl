@@ -1,5 +1,6 @@
 # django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormView
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
@@ -7,6 +8,7 @@ from django.http import HttpResponseRedirect
 
 # project imports
 from .models import Course, Group
+from .forms import EnrollForm
 
 class IndexView(generic.ListView):
     template_name = 'core/index.html'
@@ -20,6 +22,17 @@ class DetailView(LoginRequiredMixin, generic.DetailView):
 
     model = Course
     template_name = 'core/detail.html'
+
+class EnrollView(LoginRequiredMixin, FormView):
+    template_name = 'core/enroll.html'
+    form_class = EnrollForm
+    success_url=''
+
+    def form_valid(self, form):
+
+        form.enroll()
+
+        return super().form_valid(form)
 
 # enrolls student in course
 def enroll(request, course_id):
