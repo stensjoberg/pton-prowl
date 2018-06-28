@@ -33,38 +33,41 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser):
-
     # unique identifier NETID
     netid = models.CharField(max_length=40,
                              unique=True,
-                             help_text="Use your Princeton-issued netID.")
-
-    # email is the unique identifier plus '@princeton.edu'
-    # redundant redundant?
-    # TODO: Implement setter/getter to connect netid and email
-    email = models.EmailField(max_length=255,
-                             help_text="Please use Princeton email.")
+                             verbose_name="NetID",
+                             help_text="Use your Princeton-issued netID."
+                             )
 
     # full name
     full_name = models.CharField(max_length=40,
-                                 help_text="Your full name.")
+                                 unique=False,
+                                 verbose_name="Full name",
+                                 help_text="Your full name."
+                                 )
 
     # while a number, a class year makes more sense to store as chars
     class_year = models.CharField(max_length=4,
-                                 help_text="Your class year, <em>YYYY</em>")
+                                 verbose_name="Class Year",
+                                 help_text="Your class year, <em>YYYY</em>"
+                                 )
 
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
 
-    # AbstractBaseUser requires unique identifier if using standard backend
-    # TODO: switch to non-standard pton CAS backend (ask michael?)
     USERNAME_FIELD = 'netid'
-    EMAIL_FIELD = 'email'
 
     # required field upon account creation
     REQUIRED_FIELDS = []
+
+    class Meta:
+        indexes = [models.Index(fields=['full_name'])]
+        ordering = ['-full_name']
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
     def __str__(self):
         return self.netid

@@ -14,11 +14,11 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('netid', 'email', 'full_name', 'class_year', 'is_superuser')
+    list_display = ('netid', 'full_name', 'class_year', 'is_superuser')
     list_filter = ('is_superuser',)
 
     fieldsets = (
-        (None, {'fields': ('netid', 'email', 'password')}),
+        (None, {'fields': ('netid', 'password')}),
         ('Personal info', {'fields': ('full_name', 'class_year',)}),
         ('Permissions', {'fields': ('is_superuser',)}),
         ('Enrolled Courses', {'fields': ('courses',)}),
@@ -29,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('netid', 'email', 'full_name', 'class_year', 'password1', 'password2')}
+            'fields': ('netid', 'full_name', 'class_year', 'password1', 'password2')}
         ),
     )
     search_fields = ('netid',)

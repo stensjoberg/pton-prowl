@@ -12,7 +12,7 @@ class AdminUserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('netid', 'email', 'full_name', 'class_year')
+        fields = ('netid', 'full_name', 'class_year')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -39,7 +39,7 @@ class AdminUserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('netid', 'email', 'full_name', 'class_year', 'password', 'is_active', 'is_superuser')
+        fields = ('netid', 'full_name', 'class_year', 'password', 'is_active', 'is_superuser')
 
     courses = forms.ModelMultipleChoiceField(
         queryset=Course.objects.all(),
@@ -62,8 +62,8 @@ class AdminUserChangeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AdminUserChangeForm, self).__init__(*args, **kwargs)
         if self.instance.pk:
-            self.fields['courses'].initial = self.instance.course_set.all()
-            self.fields['groups'].initial = self.instance.group_set.all()
+            self.fields['courses'].initial = self.instance.courses.all()
+            self.fields['groups'].initial = self.instance.groups.all()
 
 
     def save(self, commit=True):
@@ -72,8 +72,8 @@ class AdminUserChangeForm(forms.ModelForm):
             User.save()
 
         if User.pk:
-            User.course_set.set(self.cleaned_data['courses'])
-            User.group_set.set(self.cleaned_data['groups'])
+            User.courses.set(self.cleaned_data['courses'])
+            User.groups.set(self.cleaned_data['groups'])
             print(self)
             self.save_m2m()
 
