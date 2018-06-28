@@ -25,7 +25,7 @@
 
   {% for course in user.course_set.all %}
       {% block coursediv %}
-        {% include "core/enroll.html" %}
+        {% include "core/enroll.html" with form_class=form %}
       {% endblock coursediv %}
   {% endfor %}
 {% endblock leftdiv %}

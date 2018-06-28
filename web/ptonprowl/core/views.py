@@ -1,6 +1,7 @@
 # django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import FormView
+from django.template import Context
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
@@ -12,6 +13,13 @@ from .forms import EnrollForm
 
 class IndexView(generic.ListView):
     template_name = 'core/index.html'
+    form_class = EnrollForm
+
+    form = EnrollForm()
+
+    context = Context({
+        'form': EnrollForm(),
+    })
 
     def get_queryset(self):
         return Course.objects.order_by('-title')
@@ -19,14 +27,20 @@ class IndexView(generic.ListView):
 class DetailView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
+    form = EnrollForm
+    context = Context({
+        'form_class': EnrollForm,
+        'form': EnrollForm,
+    })
 
     model = Course
     template_name = 'core/detail.html'
 
 class EnrollView(LoginRequiredMixin, FormView):
+    login_url = '/login/'
     template_name = 'core/enroll.html'
-    form_class = EnrollForm
     success_url=''
+    form_class = EnrollForm
 
     def form_valid(self, form):
 
@@ -34,7 +48,7 @@ class EnrollView(LoginRequiredMixin, FormView):
 
         return super().form_valid(form)
 
-# enrolls student in course
+"""# enrolls student in course
 def enroll(request, course_id):
     try:
         course = Course.objects.get(pk=course_id)
@@ -84,3 +98,4 @@ def deroll(request, course_id):
 # merges two groups, transfering students
 def merge_groups(request, gone_id, gtwo_id):
     return
+    """
