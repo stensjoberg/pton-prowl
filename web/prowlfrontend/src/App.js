@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 
 class App extends Component {
   state = {
-    todos: []
+    courses: [],
+    counter: 0
   };
 
   async componentDidMount() {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/courses/');
-      const todos = await res.json();
+      const res = await fetch('http://0.0.0.0:8000/api/v1/courses/');
+      const courses = await res.json();
       this.setState({
-        todos
+        courses
       });
     } catch (e) {
       console.log(e);
@@ -19,11 +20,22 @@ class App extends Component {
   }
 
   render() {
+
+    let tigerStripeStyle = {
+          backgroundColor: "#f2f2f2"
+    }
+
     return (
       <div>
-        {this.state.todos.map(item => (
-          <div key={item.id}>
-            <h1>{item.title}</h1>
+        {this.state.courses.map((item, i) => (
+          <div
+            style={(Object.assign({},
+              i % 2 && tigerStripeStyle
+            ))}
+            key={item.id}>
+              <h1>
+              {item.title}
+              </h1>
           </div>
         ))}
       </div>

@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 for code in codes:
                     code = code.replace(' ', '')
                     code = Code(
-                        code=code,
+                        id=code,
                         course=course
                     )
                     self.stdout.write("\tAdded ID " + code.__str__())

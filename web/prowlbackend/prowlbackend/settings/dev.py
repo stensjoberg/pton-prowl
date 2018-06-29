@@ -20,3 +20,13 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+# allows cross-site HTTP requests from dev React IP-port config
+CORS_ORIGIN_WHITELIST = [
+    'localhost:3000'
+]
+
+# allowed ips on which dev server can be hosted
+ALLOWED_HOSTS = [
+    '0.0.0.0'
+]

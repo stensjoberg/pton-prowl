@@ -26,9 +26,6 @@ SECRET_KEY = keys.SECRET_KEY
 # Custum user model students
 AUTH_USER_MODEL = 'users.User'
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
