@@ -1,0 +1,24 @@
+
+
+.flexcontainer {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.vert {
+  flex-direction: column;
+}
+
+.hor {
+  flex-direction: row;
+}
+
+.coursebox {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.coursebox.button {
+  float: right;
+}
