@@ -18,6 +18,7 @@ class CourseBoxList extends Component {
       this.setState({
         courses
       });
+      console.log(courses)
     } catch (e) {
       console.log(e);
     }
@@ -25,10 +26,11 @@ class CourseBoxList extends Component {
 
   render() {
     return (
-      <div class="flexcontainer vert">
+      <div className="flexcontainer vert">
       {this.state.courses.map((item, i) => (
         <CourseBox
           key={item.id}
+          id={item.id}
           title={item.title}
           i={i}
         />

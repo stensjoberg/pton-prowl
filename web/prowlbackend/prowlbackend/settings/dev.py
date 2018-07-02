@@ -28,5 +28,6 @@ CORS_ORIGIN_WHITELIST = [
 
 # allowed ips on which dev server can be hosted
 ALLOWED_HOSTS = [
-    '0.0.0.0'
+    '0.0.0.0',
+    'localhost'
 ]

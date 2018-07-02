@@ -40,6 +40,10 @@ class User(AbstractBaseUser):
                              help_text="Use your Princeton-issued netID."
                              )
 
+    # email
+    email = models.CharField(unique=False,
+                             max_length=100)
+
     # full name
     full_name = models.CharField(max_length=40,
                                  unique=False,
@@ -59,6 +63,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'netid'
+    EMAIL_FIELD = 'email'
 
     # required field upon account creation
     REQUIRED_FIELDS = []

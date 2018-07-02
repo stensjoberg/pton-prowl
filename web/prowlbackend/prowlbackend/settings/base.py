@@ -26,6 +26,14 @@ SECRET_KEY = keys.SECRET_KEY
 # Custum user model students
 AUTH_USER_MODEL = 'users.User'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'django_cas_ng.middleware.CASMiddleware',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +47,7 @@ INSTALLED_APPS = [
 
     # required 3rd party dependencies
     'rest_framework',
-    #'rest_framework.authtoken',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_cas_ng',
 
