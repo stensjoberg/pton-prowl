@@ -32,7 +32,7 @@ class Course(models.Model):
     # returns string representation
     def __str__(self):
         return "%s (%s)" % (self.title, self.id)
-
+    
     # adds user to course
     def add_user(self, user):
         self.users.add(user)

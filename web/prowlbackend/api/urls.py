@@ -9,4 +9,7 @@ urlpatterns = [
     path('cas/login/', cas_views.login, name='login'),
     path('cas/logout/', cas_views.logout, name='logout'),
 
+    # Rest auth
+    path('rest-auth/', include('rest_auth.urls')),
+
     ]

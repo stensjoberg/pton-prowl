@@ -13,7 +13,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     users = UserSerializer(read_only=True, many=True)
     groups = GroupSerializer(read_only=True, many=True)
-    
+
     class Meta:
         model = Course
         fields = ['id', 'title', 'groups', 'users']
