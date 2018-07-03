@@ -34,7 +34,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     # unique identifier NETID
-    netid = models.CharField(max_length=40,
+    netid = models.CharField(primary_key=True,
+                             max_length=40,
                              unique=True,
                              verbose_name="NetID",
                              help_text="Use your Princeton-issued netID."

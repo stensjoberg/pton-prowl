@@ -15,8 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from core import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls'))
 ]
+"""
+
+router = routers.DefaultRouter()
+router.register('courses', views.CourseListView)
+router.register('groups', views.GroupListView)
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/', include(router.urls)),
+]
+"""

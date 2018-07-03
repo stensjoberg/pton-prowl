@@ -2,8 +2,8 @@ from django.urls import include, path
 from django_cas_ng import views as cas_views
 
 urlpatterns = [
-    path('users/', include('users.urls')),
-    path('', include('core.urls')),
+    path('users/', include('users.urls', namespace='users')),
+    path('', include('core.urls', namespace='core')),
 
     # CAS paths
     path('cas/login/', cas_views.login, name='login'),

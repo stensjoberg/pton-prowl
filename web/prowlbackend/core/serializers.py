@@ -2,18 +2,51 @@ from rest_framework import serializers
 from .models import Course, Group
 from users.serializers import UserSerializer
 
-class GroupSerializer(serializers.ModelSerializer):
-    users = UserSerializer(read_only=True, many=True)
-    course = serializers.PrimaryKeyRelatedField(read_only=True)
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='core:group-detail',
+        lookup_field='pk'
+    )
+
+    users = serializers.HyperlinkedRelatedField(
+        view_name='users:user-detail',
+        lookup_field='pk',
+        many=True,
+        read_only=True
+    )
+
+    course = serializers.HyperlinkedRelatedField(
+        view_name='core:course-detail',
+        lookup_field='pk',
+        many=False,
+        read_only=True
+    )
 
     class Meta:
         model = Group
-        fields = ['id', 'course', 'users']
+        fields = ['url', 'id', 'course', 'users']
 
-class CourseSerializer(serializers.ModelSerializer):
-    users = UserSerializer(read_only=True, many=True)
-    groups = GroupSerializer(read_only=True, many=True)
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='core:course-detail',
+        lookup_field='pk'
+    )
+
+    users = serializers.HyperlinkedRelatedField(
+        view_name='users:user-detail',
+        lookup_field='pk',
+        many=True,
+        read_only=True
+    )
+
+    groups = serializers.HyperlinkedRelatedField(
+        view_name='core:group-detail',
+        lookup_field='pk',
+        many=True,
+        read_only=True
+    )
+
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'groups', 'users']
+        fields = ['url', 'id', 'title', 'groups', 'users']

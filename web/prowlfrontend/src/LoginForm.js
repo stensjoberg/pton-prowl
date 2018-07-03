@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
-import CourseBox from './CourseBox'
 import { styles } from './styles'
 import './css/stylesheet.css';
 import './css/normalize.css';

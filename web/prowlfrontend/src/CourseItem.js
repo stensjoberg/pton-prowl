@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Link, Route } from 'react-router-dom'
 import Radium from 'radium'
 import { styles } from './styles'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
 
-class CourseBox extends Component {
+class CourseItem extends Component {
   handleAddition = async (event) => {
     event.preventDefault()
     console.log(this.props.id)
@@ -27,7 +28,6 @@ class CourseBox extends Component {
     }
   }
 
-
   render() {
     return (
       <div className="flexcontainer hor coursebox" style={Object.assign({},
@@ -36,12 +36,10 @@ class CourseBox extends Component {
         <p>
           {this.props.title}
         </p>
-        <button onClick={this.handleAddition}>
-          +
-        </button>
+        <button onClick={this.handleAddition}>+</button>
       </div>
     );
   }
 }
 
-export default Radium(CourseBox)
+export default Radium(CourseItem)
