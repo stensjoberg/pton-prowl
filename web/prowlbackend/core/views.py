@@ -20,7 +20,6 @@ class CourseListView(generics.ListAPIView):
         group = Group(course=course)
         group.save()
         group.add_user(user)
-
         return Response()
 
 class CourseDetailView(views.APIView):

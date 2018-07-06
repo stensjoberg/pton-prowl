@@ -3,6 +3,19 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
+class AvailField(models.BinaryField):
+
+    description = "Week availability object"
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 21
+        super().__init__(*args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs["max_length"]
+        return name, path, args, kwargs
+
 class UserManager(BaseUserManager):
     def create_user(self, netid, password=None):
         """
@@ -57,6 +70,10 @@ class User(AbstractBaseUser):
                                  verbose_name="Class Year",
                                  help_text="Your class year, <em>YYYY</em>"
                                  )
+
+    # very low level representation of availability
+    # each bit represents an hour either available or not
+    availability = AvailField()
 
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)

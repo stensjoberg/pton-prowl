@@ -35,7 +35,7 @@ const Course = ({ match }) => {
 
 function isAuthenticated() {
   // TODO: implement this
-  return true
+  return false
 }
 
 export default Radium(App)
