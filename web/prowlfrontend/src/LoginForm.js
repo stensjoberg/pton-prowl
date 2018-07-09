@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
-import { styles } from './styles'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
+
+export async function isAuthenticated() {
+  const resp = await fetch('http://0.0.0.0:8000/api/v1/validate', {
+        headers: {
+        'Authorization': 'Token ' + localStorage.getItem('token'),
+      }
+    }
+  )
+  // TODO: update naive authorization
+  return resp.ok
+}
 
 class LoginForm extends Component {
   constructor(props) {
@@ -12,7 +22,6 @@ class LoginForm extends Component {
       netid: '',
       password: ''
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -28,7 +37,6 @@ class LoginForm extends Component {
 
   handleLogin = async (event) => {
     event.preventDefault()
-    console.log(this.state.netid)
     try {
       const res = await fetch('http://0.0.0.0:8000/api/v1/rest-auth/login/', {
         method: 'POST',
@@ -43,6 +51,7 @@ class LoginForm extends Component {
       })
       const payload = await res.json();
       localStorage.setItem('token', payload['key']);
+      this.props.history.push('/');
     } catch (e) {
       console.log(e);
     }
@@ -51,10 +60,10 @@ class LoginForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleLogin}>
-        <label for="netid"><b>NetID</b></label>
+        <label htmlFor="netid"><b>NetID</b></label>
         <input type="text" onChange={this.handleInputChange} placeholder="Enter NetID" name="netid" required />
 
-        <label for="password"><b>Password</b></label>
+        <label htmlFor="password"><b>Password</b></label>
         <input type="password" onChange={this.handleInputChange} placeholder="Enter Password" name="password" required />
 
         <input type="submit" value="Login" />

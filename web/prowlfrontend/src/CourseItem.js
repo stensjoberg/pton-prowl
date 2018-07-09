@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom'
 import Radium from 'radium'
 import { styles } from './styles'
 import './css/stylesheet.css';

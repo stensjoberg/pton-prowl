@@ -1,41 +1,26 @@
 // App.js
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Radium from 'radium'
-import CourseItemList from './CourseItemList'
-import Whenisgood from './Whenisgood'
+import Core from './Core'
 import LoginForm from './LoginForm'
-import { styles } from './styles'
+
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
 
+
 class App extends Component {
   render() {
     return (
-      <Router on>
-        <Route
-          path="/"
-            render={() => !isAuthenticated() ?
-              <LoginForm/> :
-              <div className="flexcontainer hor">
-                <CourseItemList/>
-                <Whenisgood/>
-                <Route path='/course/:courseId' component={Course}/>
-              </div>
-            }/>
+      <Router>
+        <Switch>
+          <Route path="/login" component={LoginForm} />
+          <Route path="/" component={Core} />
+        </Switch>
       </Router>
     );
   }
-}
-
-const Course = ({ match }) => {
-  return <h1>Placeholder: {match.params.courseId}!</h1>
-}
-
-function isAuthenticated() {
-  // TODO: implement this
-  return false
 }
 
 export default Radium(App)

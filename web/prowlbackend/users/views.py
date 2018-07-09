@@ -19,4 +19,7 @@ class UserDetailView(views.APIView):
 
 class ValidateView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        return Response()
     # minimal overhead view for checking if user is validated by request
