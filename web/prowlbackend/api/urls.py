@@ -2,7 +2,7 @@ from django.urls import include, path
 from django_cas_ng import views as cas_views
 
 urlpatterns = [
-    path('users/', include('users.urls', namespace='users')),
+    path('', include('users.urls', namespace='users')),
     path('', include('core.urls', namespace='core')),
 
     # CAS paths
