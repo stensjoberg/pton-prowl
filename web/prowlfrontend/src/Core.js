@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import Radium from 'radium'
 import CourseItemList from './CourseItemList'
 import Whenisgood from './Whenisgood'
-import { isAuthenticated } from './LoginForm'
+import LogoutForm from './LogoutForm'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
@@ -11,16 +11,19 @@ import './css/skeleton.css';
 class Core extends Component {
 
   render() {
-    if (!isAuthenticated()) {
+    if (localStorage.getItem('token') == null) {
       return (<Redirect to="/login" />);
     }
-    return (
-      <div className="flexcontainer hor">
-        <CourseItemList/>
-        <Whenisgood/>
-        <Route path='/course/:courseId' component={Course}/>
-      </div>
-    )
+    else {
+      return (
+        <div className="flexcontainer hor">
+          <CourseItemList/>
+          <Whenisgood/>
+          <LogoutForm history={this.props.history}/>
+          <Route path='/course/:courseId' component={Course}/>
+        </div>
+      )
+    }
   }
 }
 

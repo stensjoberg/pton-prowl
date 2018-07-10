@@ -4,16 +4,6 @@ import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
 
-export async function isAuthenticated() {
-  const resp = await fetch('http://0.0.0.0:8000/api/v1/validate', {
-        headers: {
-        'Authorization': 'Token ' + localStorage.getItem('token'),
-      }
-    }
-  )
-  // TODO: update naive authorization
-  return resp.ok
-}
 
 class LoginForm extends Component {
   constructor(props) {
@@ -49,11 +39,11 @@ class LoginForm extends Component {
           password: this.state.password
         })
       })
-      const payload = await res.json();
-      localStorage.setItem('token', payload['key']);
-      this.props.history.push('/');
+      const payload = await res.json()
+      localStorage.setItem('token', payload['key'])
+      this.props.history.push('/')
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
   }
 
