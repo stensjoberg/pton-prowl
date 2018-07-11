@@ -22,8 +22,9 @@ class Course(models.Model):
     # there are many users in one course and one user can be in
     # many courses
     users = models.ManyToManyField(User,
-                                  related_name='courses',
-                                  related_query_name='course')
+                                   related_name='courses',
+                                   related_query_name='course'
+                                   )
 
     class Meta:
         verbose_name = "course"
@@ -32,7 +33,7 @@ class Course(models.Model):
     # returns string representation
     def __str__(self):
         return "%s (%s)" % (self.title, self.id)
-    
+
     # adds user to course
     def add_user(self, user):
         self.users.add(user)
@@ -53,9 +54,9 @@ class Code(models.Model):
 
     # the code (and pk)
     id = models.CharField(max_length=255,
-                            unique=True,
-                            primary_key=True
-                            )
+                          unique=True,
+                          primary_key=True
+                          )
 
     # each course has many codes
     course = models.ForeignKey(Course,

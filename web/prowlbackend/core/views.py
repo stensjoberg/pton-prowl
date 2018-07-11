@@ -1,7 +1,7 @@
-from rest_framework import generics, permissions, views
+from rest_framework import generics, permissions, views, status
 from rest_framework.response import Response
-from .models import Course, Group
-from .serializers import CourseSerializer, GroupSerializer
+from .models import Course, Group, Code
+from .serializers import CourseSerializer, GroupSerializer, CodeSerializer
 
 from users.models import User
 
@@ -27,7 +27,8 @@ class CourseDetailView(views.APIView):
         try:
             return Course.objects.get(pk=pk)
         except Course.DoesNotExist:
-            raise Http404
+            content = {'error': '404, course object not found'}
+            return Response(content, status=status.HTTP_404_NOT_FOUND)
 
     def get(self, request, pk, format=None):
         course = self.get_object(pk)
@@ -43,9 +44,27 @@ class GroupDetailView(views.APIView):
         try:
             return Group.objects.get(pk=pk)
         except Group.DoesNotExist:
-            raise Http404
+            content = {'error': '404, group object not found'}
+            return Response(content, status=status.HTTP_404_NOT_FOUND)
 
     def get(self, request, pk, format=None):
         group = self.get_object(pk)
         serializer = GroupSerializer(group, context={'request': request})
+        return Response(serializer.data)
+
+class CodeListView(generics.ListAPIView):
+    queryset = Code.objects.all()
+    serializer_class = CodeSerializer
+
+class CodeDetailView(views.APIView):
+    def get_object(self, pk):
+        try:
+            return Code.objects.get(pk=pk)
+        except Code.DoesNotExist:
+            content = {'error': '404, group object not found'}
+            return Response(content, status=status.HTTP_404_NOT_FOUND)
+
+    def get(self, request, pk, format=None):
+        code = self.get_object(pk)
+        serializer = CodeSerializer(code, context={'request': request})
         return Response(serializer.data)
