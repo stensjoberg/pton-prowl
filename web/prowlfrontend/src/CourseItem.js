@@ -6,8 +6,10 @@ import './css/normalize.css';
 import './css/skeleton.css';
 
 class CourseItem extends Component {
+
   handleAddition = async (event) => {
     event.preventDefault()
+
     console.log(this.props.id)
     try {
       const res = await fetch('http://0.0.0.0:8000/api/v1/courses/', {

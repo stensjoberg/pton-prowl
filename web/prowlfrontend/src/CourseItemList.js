@@ -35,7 +35,6 @@ class CourseItemList extends Component {
           <Link to={'/course/'+item.id} key={item.id}>
             <CourseItem
               id={item.id}
-              url={item.url}
               title={item.title}
               i={i}
             />

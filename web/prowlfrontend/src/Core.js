@@ -4,6 +4,7 @@ import Radium from 'radium'
 import CourseItemList from './CourseItemList'
 import Whenisgood from './Whenisgood'
 import LogoutForm from './LogoutForm'
+import CourseDetail from './CourseDetail'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
@@ -20,15 +21,11 @@ class Core extends Component {
           <CourseItemList/>
           <Whenisgood/>
           <LogoutForm history={this.props.history}/>
-          <Route path='/course/:courseId' component={Course}/>
+          <Route path='/course/:courseId' component={CourseDetail}/>
         </div>
       )
     }
   }
-}
-
-const Course = ({ match }) => {
-  return <h1>Placeholder: {match.params.courseId}!</h1>
 }
 
 export default Radium(Core)
