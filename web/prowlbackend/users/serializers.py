@@ -19,7 +19,6 @@ class AvailFieldSerializer(serializers.Field):
         bits = []
         for day in self.weekdays:
             bits.append(data[day])
-
         return bytes(np.packbits(bits))
 
     # converts internal value to week dictionary
@@ -27,7 +26,6 @@ class AvailFieldSerializer(serializers.Field):
         # converts internal value to 7 chunks of x 24 hours (bits)
         bitchunks = grouper(np.unpackbits(bytearray(value)), 24) # 3*8=24 is timeslots/hours per day
         # ...the 7 chunks correspond to the 7 days of the week
-
         week = {}
         for (bytes, day) in zip(bitchunks, self.weekdays):
             avail = []
@@ -43,7 +41,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     availability = AvailFieldSerializer()
-
 
     class Meta:
         model = User

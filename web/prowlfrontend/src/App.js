@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Radium from 'radium'
 import Core from './Core'
 import LoginForm from './LoginForm'
+import UserDetail from './UserDetail'
+
 
 import './css/stylesheet.css';
 import './css/normalize.css';
@@ -15,8 +17,9 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/login" component={LoginForm} />
-          <Route path="/" component={Core} />
+          <Route path="/login" component={LoginForm}/>
+          <Route path='/user/:netid' component={UserDetail}/>
+          <Route path="/" component={Core}/>
         </Switch>
       </Router>
     );

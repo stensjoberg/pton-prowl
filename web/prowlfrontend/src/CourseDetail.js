@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
-import { styles } from './styles'
-import getCourse from './helper'
+import { getCourse } from './helper'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
