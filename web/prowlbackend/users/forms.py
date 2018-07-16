@@ -12,7 +12,7 @@ class AdminUserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('netid', 'full_name', 'class_year')
+        fields = ('netid', 'full_name', 'class_year',)
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -25,6 +25,7 @@ class AdminUserCreateForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
+        user.availability = b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
