@@ -7,40 +7,43 @@ import './css/skeleton.css';
 
 class CourseItem extends Component {
 
-  handleAddition = async (event) => {
-    event.preventDefault()
+    handleButton = async (event) => {
+        event.preventDefault()
+        try {
+            const res = await fetch('http://0.0.0.0:8000/api/v1/courses/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Token ' + localStorage.getItem('token'),
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: this.props.id,
+                    op: (this.props.add ? 'add' : 'remove'),
+                })
+            })
+        } catch (e) {
+            console.log(e);
+        }
 
-    console.log(this.props.id)
-    try {
-      const res = await fetch('http://0.0.0.0:8000/api/v1/courses/', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Token ' + localStorage.getItem('token'),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: this.props.id,
-        })
-      })
-      console.log(res)
-    } catch (e) {
-      console.log(e);
     }
-  }
 
-  render() {
-    return (
-      <div className="flexcontainer hor coursebox" style={Object.assign({},
-        this.props.i % 2 && styles.tigerStripe
-      )}>
-        <p>
-          {this.props.title}
-        </p>
-        <button onClick={this.handleAddition}>+</button>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="flexcontainer hor coursebox" style={Object.assign({},
+                this.props.i % 2 && styles.tigerStripe
+            )}>
+            <p>
+            {this.props.title}
+            </p>
+            {
+                this.props.add
+                ? <button onClick={this.handleButton}>+</button>
+                : <button onClick={this.handleButton}>-</button>
+            }
+            </div>
+        );
+    }
 }
 
 export default Radium(CourseItem)

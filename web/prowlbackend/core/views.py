@@ -15,8 +15,16 @@ class CourseListView(generics.ListAPIView):
     def post(self, request, *args, **kwargs):
         course = Course.objects.get(pk=request.data['id'])
         user = request.user
-        course.add_user(user)
 
+        operation = request.data['op']
+
+        if operation == 'add':
+            course.add_user(user)
+        elif operation == 'remove':
+            course.remove_user(user)
+        else:
+            content = {'error': '400, operation not allowed'}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
         group = Group(course=course)
         group.save()
         group.add_user(user)

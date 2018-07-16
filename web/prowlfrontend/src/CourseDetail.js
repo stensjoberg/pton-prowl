@@ -13,7 +13,7 @@ class CourseDetail extends Component {
 
   async componentDidMount() {
     const id = this.props.match.params.courseId
-    const course = await getCourse(id)
+    const course = await getCourse({id: id})
     this.setState({
       course
     })
@@ -23,7 +23,7 @@ class CourseDetail extends Component {
     if ((prevProps.match.params.courseId === undefined && this.props.match.params.courseId !== undefined) ||
         (prevProps.match.params.courseId !== this.props.match.params.courseId)) {
       const id = this.props.match.params.courseId
-      const course = await getCourse(id)
+      const course = await getCourse({id: id})
       this.setState({
         course
       })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import Radium from 'radium'
 import CourseItemList from './CourseItemList'
+import EnrolledCourseItemList from './EnrolledCourseItemList'
 import LogoutForm from './LogoutForm'
 import CourseDetail from './CourseDetail'
 import './css/stylesheet.css';
@@ -17,7 +18,10 @@ class Core extends Component {
     else {
       return (
         <div className="flexcontainer hor">
-          <CourseItemList/>
+	  <div className="flexcontainer vert">
+		<EnrolledCourseItemList/>
+          	<CourseItemList/>
+	  </div>
           <LogoutForm history={this.props.history}/>
           <Route path='/course/:courseId' component={CourseDetail}/>
         </div>

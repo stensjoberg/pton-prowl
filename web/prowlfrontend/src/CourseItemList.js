@@ -31,12 +31,14 @@ class CourseItemList extends Component {
   render() {
     return (
       <div className="flexcontainer vert">
+      <h3>Avaliable Courses</h3>
         {this.state.courses.map((item, i) => (
           <Link to={'/course/'+item.id} key={item.id}>
             <CourseItem
               id={item.id}
               title={item.title}
               i={i}
+              add={true}
             />
           </Link>
         ))}
