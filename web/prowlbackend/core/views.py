@@ -16,11 +16,11 @@ class CourseListView(generics.ListAPIView):
         course = Course.objects.get(pk=request.data['id'])
         user = request.user
 
-        operation = request.data['op']
+        operation = request.data['change']
 
-        if operation == 'add':
+        if operation == 'enroll':
             course.add_user(user)
-        elif operation == 'remove':
+        elif operation == 'unenroll':
             course.remove_user(user)
         else:
             content = {'error': '400, operation not allowed'}

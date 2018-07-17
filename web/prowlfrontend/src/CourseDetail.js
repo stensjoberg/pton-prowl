@@ -31,14 +31,11 @@ class CourseDetail extends Component {
   }
 
   render() {
-    console.log("Component did render")
     const course = this.state.course
     if (course.codes === undefined) {
-      console.log("Course undefined...")
       return false
     }
     else {
-      console.log("Course defined: ")
       console.log(course)
       return (
         <div className="flexcontainer vert">

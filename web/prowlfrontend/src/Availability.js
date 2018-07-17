@@ -60,11 +60,11 @@ class Availability extends Component {
         return true
     }
 
-    handleMouseDown = (day, hour, value, e) => {
+    handleMouseDown = async (day, hour, value, e) => {
         const mouseIsDown = true
         const changeTo = !value
 
-        this.setState({
+        await this.setState({
             mouseIsDown,
             changeTo
         })

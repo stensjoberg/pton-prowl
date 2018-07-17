@@ -19,12 +19,16 @@ class CourseItem extends Component {
                 },
                 body: JSON.stringify({
                     id: this.props.id,
-                    op: (this.props.add ? 'add' : 'remove'),
+                    change: (this.props.change ? 'enroll' : 'unenroll'),
                 })
             })
+            if (typeof this.props.onChange === 'function') {
+                 this.props.onChange(this.props.id, this.props.change)
+            }
         } catch (e) {
             console.log(e);
         }
+
 
     }
 
@@ -37,7 +41,7 @@ class CourseItem extends Component {
             {this.props.title}
             </p>
             {
-                this.props.add
+                this.props.change
                 ? <button onClick={this.handleButton}>+</button>
                 : <button onClick={this.handleButton}>-</button>
             }

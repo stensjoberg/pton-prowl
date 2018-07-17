@@ -15,7 +15,6 @@ class UserDetail extends Component {
     async componentDidMount() {
         const netid = this.props.match.params.netid
         const user = await getUser(netid)
-        console.log(user)
         this.setState({
             user
         })

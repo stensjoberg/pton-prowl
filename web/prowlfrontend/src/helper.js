@@ -3,7 +3,6 @@ export async function getCourse({ id, url }) {
     if (id !== undefined && url === undefined) {
         url = 'http://0.0.0.0:8000/api/v1/courses/' + id
     }
-    console.log(url)
     try {
         const response = await fetch(url, {
             headers: {
@@ -18,8 +17,26 @@ export async function getCourse({ id, url }) {
     }
 }
 
+export async function getAllCourses() {
+
+    const url = 'http://0.0.0.0:8000/api/v1/courses/'
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('token'),
+            }
+        }
+        )
+        const courses = await response.json()
+        return courses
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
+
 export async function getUser(netid) {
-    console.log(netid)
 
     if (netid === undefined) {
         try {
@@ -28,7 +45,6 @@ export async function getUser(netid) {
                     'Authorization': 'Token ' + localStorage.getItem('token'),
                 }
             })
-            console.log(response)
             const user = await response.json()
             return user
         } catch (e) {
@@ -51,7 +67,7 @@ export async function getUser(netid) {
 
 }
 
-export async function getObjectsFromLinks(links) {
+export async function getCoursesFromLinks(links) {
     let objects = []
     for (let i in links) {
         objects.push(await getCourse({ url: links[i] }))
