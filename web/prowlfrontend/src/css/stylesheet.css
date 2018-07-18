@@ -6,6 +6,9 @@
 
 .vert {
   flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
 }
 
 .hor {
@@ -16,11 +19,20 @@
   width: 100%;
   justify-content: space-between;
 }
-
 .coursebox button {
     text-decoration: none;
     font-size: 25px;
       
+}
+
+.times {
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.condenser {
+  width: 500px;
+  height: 500px;
 }
 
 .navbar {
@@ -30,7 +42,6 @@
     background-color: #EE7F2D;
     margin-bottom: 20px;
 }
-
 
 .navbar a {
     float: left;

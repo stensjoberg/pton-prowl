@@ -6,41 +6,40 @@ import './css/normalize.css';
 import './css/skeleton.css';
 
 const dayreps = new Map([
-    ['monday','Mond'],
+    ['monday','Mon'],
     ['tuesday','Tues'],
-    ['wednesday','Wedn'],
-    ['thursday','Thur'],
+    ['wednesday','Wed'],
+    ['thursday','Thurs'],
     ['friday','Fri'],
     ['saturday','Sat'],
     ['sunday','Sun']
 ])
 
 const hourreps = new Map([
-    [0,'00:00'],
-    [1,'01:00'],
-    [2,'02:00'],
-    [3,'03:00'],
-    [4,'04:00'],
-    [5,'05:00'],
-    [6,'06:00'],
-    [7,'07:00'],
-    [8,'08:00'],
-    [9,'09:00'],
-    [10,'10:00'],
-    [11,'11:00'],
-    [12,'12:00'],
-    [13,'13:00'],
-    [14,'14:00'],
-    [15,'15:00'],
-    [16,'16:00'],
-    [17,'17:00'],
-    [18,'18:00'],
-    [19,'19:00'],
-    [20,'20:00'],
-    [21,'21:00'],
-    [22,'22:00'],
-    [23,'23:00'],
-    [24,'24:00']
+    [0,'12am'],
+    [1,'1am'],
+    [2,'2am'],
+    [3,'3am'],
+    [4,'4am'],
+    [5,'5am'],
+    [6,'6am'],
+    [7,'7am'],
+    [8,'8am'],
+    [9,'9am'],
+    [10,'10am'],
+    [11,'11am'],
+    [12,'12pm'],
+    [13,'1pm'],
+    [14,'2pm'],
+    [15,'3pm'],
+    [16,'4pm'],
+    [17,'5pm'],
+    [18,'6pm'],
+    [19,'7pm'],
+    [20,'8pm'],
+    [21,'9pm'],
+    [22,'10pm'],
+    [23,'11pm']
 ])
 
 const AVAIL = true
@@ -68,10 +67,10 @@ class Availability extends Component {
             mouseIsDown,
             changeTo
         })
-        
+
         this.handleMouseEnter(day, hour, value, e)
     }
-    
+
     handleMouseUp = (e) => {
         const mouseIsDown = false
 
@@ -97,12 +96,13 @@ class Availability extends Component {
         }
         else {
             return (
+              <div className="condenser">
                 <div className="flexcontainer hor" onMouseUp={(e) => this.handleMouseUp(e)}>
                 {Object.keys(this.state.availability).map((day) => (
                     <div className="flexcontainer vert" key={day}>
-                    <h4>{dayreps.get(day)}</h4>
+                    <h5>{dayreps.get(day)}</h5>
                     {this.state.availability[day].map((value, hour) => (
-                        <button key={day+hour}
+                        <button className="times" key={day+hour}
                                 onMouseEnter={(e) => this.handleMouseEnter(day, hour, value, e)}
                                 onMouseDown={(e) => this.handleMouseDown(day, hour, value, e)}
                                 style={Object.assign({},
@@ -111,11 +111,12 @@ class Availability extends Component {
                                 )}>
                             {hourreps.get(hour)}
                         </button>
-                        
+
                     ))}
                     </div>
                 ))}
                 </div>
+              </div>
             )
         }
     }

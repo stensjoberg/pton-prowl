@@ -1,5 +1,8 @@
 from django.db import models
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 from students.models import Student
 
 #
@@ -12,6 +15,10 @@ class Course(models.Model):
 
     # verbose title of course
     title = models.CharField(max_length=200, unique=False)
+<<<<<<< Updated upstream
+=======
+    groups = models.ManyToManyField(Group)
+>>>>>>> Stashed changes
 
     # there are many students in one course and one student can be in
     # many courses
@@ -34,15 +41,23 @@ class Course(models.Model):
     def __str__(self):
         return self.title + " (" + str(self.id) + ")"
 
+<<<<<<< Updated upstream
 #
 # A Princeton course code like 'COS216', has the code itself and its course
 #
+=======
+    # def addgroup(self, group):
+
+>>>>>>> Stashed changes
 class Code(models.Model):
 
     # the code (and pk)
     code = models.CharField(max_length=255, unique=True, primary_key=True)
+<<<<<<< Updated upstream
 
     # each course has many codes
+=======
+>>>>>>> Stashed changes
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -52,6 +67,7 @@ class Code(models.Model):
 # A study group has an associated course and member students
 #
 class Group(models.Model):
+<<<<<<< Updated upstream
 
     # each course has many groups
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -84,3 +100,17 @@ class Group(models.Model):
 
     def __str__(self):
         return self.course.__str__() + " (" + str(self.id) + ")"
+=======
+    members = models.ManyToManyField(Student)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    time = models.TextField()
+
+    def __str__(self):
+        return self.id + " - " + Truncator(self.members).words(5) + "..."
+"""
+    def add_member(self, student):
+
+
+    def remove_member(self, student):
+"""
+>>>>>>> Stashed changes
