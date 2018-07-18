@@ -20,7 +20,6 @@ class Core extends Component {
     async componentDidMount() {
        
         const user = await getUser()
-
         this.setState({
             user
         })
@@ -33,13 +32,10 @@ class Core extends Component {
       else {
           return (
               <div>
-              <NavBar user={this.state.user} history={this.props.history}/>
-              <div className="flexcontainer hor">
-              <div className="flexcontainer vert">
-              <CourseItemList/>
-              </div>
-              <Route path='/course/:courseId' component={CourseDetail}/>
-              <Route path='/:netid' component={UserDetail}/>
+                <NavBar user={this.state.user} history={this.props.history}/>
+                <div className="flexcontainer hor">
+                <CourseItemList className="courseitemlist"/>
+                <Route className="coursedetail" path='/courses/:courseId' component={CourseDetail}/>
               </div>
               </div>
           )

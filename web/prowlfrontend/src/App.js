@@ -5,7 +5,7 @@ import Radium from 'radium'
 import Core from './Core'
 import LoginForm from './LoginForm'
 import UserDetail from './UserDetail'
-
+import CourseDetail from './CourseDetail'
 
 import './css/stylesheet.css';
 import './css/normalize.css';
@@ -18,8 +18,8 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/login" component={LoginForm}/>
-          <Route path='/:netid' component={UserDetail}/>
-          <Route path="/" component={Core}/>
+          <Route path="/courses" component={Core}/>
+          <Route path='/user/:netid' component={UserDetail}/>
         </Switch>
       </Router>
     );

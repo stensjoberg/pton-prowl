@@ -74,7 +74,7 @@ class CourseItemList extends Component {
             <div className="flexcontainer vert">
             <h3>Enrolled Courses</h3>
             {this.state.enrolledCourses.map((item, i) => (
-                <Link to={'/course/'+item.id} key={item.id}>
+                <Link to={'/courses/'+item.id} key={item.id}>
                 <CourseItem
                 id={item.id}
                 title={item.title}
@@ -89,7 +89,7 @@ class CourseItemList extends Component {
             <input type="text" placeholder="Search" onChange={(e) => this.handleSearch(e.target.value)}/>
             </fieldset></form>
             {this.state.filteredAvailCourses.map((item, i) => (
-                <Link to={'/course/'+item.id} key={item.id}>
+                <Link to={'/courses/'+item.id} key={item.id}>
                 <CourseItem
                 id={item.id}
                 title={item.title}

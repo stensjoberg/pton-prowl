@@ -12,8 +12,8 @@ class NavBar extends Component {
     render() {
         return (
             <div className="navbar">
-                <NavLink to={'/'} activeClassName="active" key={'home'}>Home</NavLink>
-                <NavLink to={'/'+this.props.user.netid} activeClassName="active" className="profilenav" key={'profile'}>{this.props.user.netid}</NavLink>
+                <NavLink to={'/courses'} activeClassName="active" key={'home'}>Home</NavLink>
+                <NavLink to={'/user/'+this.props.user.netid} activeClassName="active" className="profilenav" key={'profile'}>Profile</NavLink>
                 <LogoutForm history={this.props.history}/>
             </div>
 
