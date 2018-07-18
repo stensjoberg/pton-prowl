@@ -13,7 +13,7 @@ class CourseDetail extends Component {
 
   async componentDidMount() {
     const id = this.props.match.params.courseId
-    const course = await getCourse(id)
+    const course = await getCourse({id: id})
     this.setState({
       course
     })
@@ -23,7 +23,7 @@ class CourseDetail extends Component {
     if ((prevProps.match.params.courseId === undefined && this.props.match.params.courseId !== undefined) ||
         (prevProps.match.params.courseId !== this.props.match.params.courseId)) {
       const id = this.props.match.params.courseId
-      const course = await getCourse(id)
+      const course = await getCourse({id: id})
       this.setState({
         course
       })
@@ -31,14 +31,11 @@ class CourseDetail extends Component {
   }
 
   render() {
-    console.log("Component did render")
     const course = this.state.course
     if (course.codes === undefined) {
-      console.log("Course undefined...")
       return false
     }
     else {
-      console.log("Course defined: ")
       console.log(course)
       return (
         <div className="flexcontainer vert">

@@ -8,31 +8,31 @@ import './css/skeleton.css';
 
 class UserDetail extends Component {
 
-  state = {
-    user: {}
-  };
+    state = {
+        user: {}
+    };
 
-  async componentDidMount() {
-    const netid = this.props.match.params.netid
-    const user = await getUser(netid)
-    this.setState({
-      user
-    })
-  }
+    async componentDidMount() {
+        const netid = this.props.match.params.netid
+        const user = await getUser(netid)
+        this.setState({
+            user
+        })
+    }
 
     render() {
-      if (this.state.user.availability === undefined) {
-        return false
-      }
-      else {
-        return (
-          <div>
-          <h1>{this.state.user.full_name}</h1>
-          <Availability data={this.state.user.availability}/>
-          </div>
-        )
+        if (this.state.user.availability === undefined) {
+            return false
+        }
+        else {
+            return (
+                <div>
+                <h1>{this.state.user.full_name}</h1>
+                <Availability data={this.state.user.availability}/>
+                </div>
+            )
+        }
     }
-  }
 }
 
 export default Radium(UserDetail)

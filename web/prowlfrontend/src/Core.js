@@ -17,7 +17,9 @@ class Core extends Component {
     else {
       return (
         <div className="flexcontainer hor">
-          <CourseItemList/>
+	  <div className="flexcontainer vert">
+          	<CourseItemList/>
+	  </div>
           <LogoutForm history={this.props.history}/>
           <Route path='/course/:courseId' component={CourseDetail}/>
         </div>

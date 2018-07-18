@@ -66,6 +66,9 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+# vim swap files
+*.swp
+
 # Sphinx documentation
 docs/_build/
 
