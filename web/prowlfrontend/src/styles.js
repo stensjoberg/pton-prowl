@@ -36,10 +36,10 @@ export const styles = {
     },
 
     available: {
-        backgroundColor: "#00FF00"
+        backgroundColor: "#50E940"
     },
-    
+
     unavailable: {
-        backgroundColor: "#FF0000"
+        backgroundColor: "#D8D8D8"
     }
 };

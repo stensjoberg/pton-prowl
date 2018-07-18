@@ -8,6 +8,9 @@
 
 .vert {
   flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
 }
 
 .hor {
@@ -19,6 +22,12 @@
   justify-content: space-between;
 }
 
-.coursebox.button {
-  
+.times {
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.condenser {
+  width: 500px;
+  height: 500px;
 }
