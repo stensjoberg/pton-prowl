@@ -12,11 +12,23 @@ const UNENROLL = false
 
 class CourseItemList extends Component {
     state = {
+        searchString: '',
         availCourses: [],
+        filteredAvailCourses: [],
         enrolledCourses: []
     }
-
-    moveElement = ({from, to, id}) => {
+    
+    handleSearch = async (value) => {
+        const searchString = value.toLowerCase()
+        let filteredAvailCourses = this.state.availCourses
+        filteredAvailCourses = this.state.availCourses.filter(elem => 
+            elem.title.toLowerCase().search(
+                searchString) !== -1
+        )
+        this.setState({
+            searchString,
+            filteredAvailCourses
+        })
     }
 
     handleChange = async (id, change) => {
@@ -35,6 +47,8 @@ class CourseItemList extends Component {
             availCourses,
             enrolledCourses
         })
+
+        this.handleSearch(this.state.searchString)
     }
     async componentDidMount() {
        
@@ -50,7 +64,8 @@ class CourseItemList extends Component {
         })
         this.setState({
             availCourses,
-            enrolledCourses
+            enrolledCourses,
+            filteredAvailCourses: availCourses
         })
     }
 
@@ -69,8 +84,11 @@ class CourseItemList extends Component {
                 />
                 </Link>
             ))}
-            <h3>Avaliable Courses</h3>
-            {this.state.availCourses.map((item, i) => (
+            <h3>Available Courses</h3>
+            <form><fieldset>
+            <input type="text" placeholder="Search" onChange={(e) => this.handleSearch(e.target.value)}/>
+            </fieldset></form>
+            {this.state.filteredAvailCourses.map((item, i) => (
                 <Link to={'/course/'+item.id} key={item.id}>
                 <CourseItem
                 id={item.id}
