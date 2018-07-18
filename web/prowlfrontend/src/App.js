@@ -18,7 +18,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="/login" component={LoginForm}/>
-          <Route path='/user/:netid' component={UserDetail}/>
+          <Route path='/:netid' component={UserDetail}/>
           <Route path="/" component={Core}/>
         </Switch>
       </Router>
