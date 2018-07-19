@@ -7,6 +7,7 @@ import LoginForm from './LoginForm'
 import UserDetail from './UserDetail'
 import Welcome from './Welcome'
 import CourseDetail from './CourseDetail'
+import Home from './Home'
 
 
 import './css/stylesheet.css';
@@ -21,8 +22,8 @@ class App extends Component {
         <Switch>
           <Route path="/welcome" component={Welcome}/>
           <Route path="/login" component={LoginForm}/>
-          <Route path="/home" component={Core}/>
-          <Route path="/courses" component={Core}/>
+          <Route path="/home" component={Home}/>
+          <Route path='/course/:courseId' component={CourseDetail}/>
           <Route path='/user/:netid' component={UserDetail}/>
         </Switch>
       </Router>
