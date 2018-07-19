@@ -47,8 +47,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
 
+    groups = serializers.HyperlinkedRelatedField(
+        view_name='core:group-detail',
+        lookup_field='pk',
+        many=True,
+        read_only=True
+    )
+
     availability = AvailFieldSerializer()
 
     class Meta:
         model = User
-        fields = ['url', 'netid', 'email', 'full_name', 'class_year', 'availability', 'courses']
+        fields = ['url', 'netid', 'email', 'full_name', 'class_year', 'availability', 'courses', 'groups']

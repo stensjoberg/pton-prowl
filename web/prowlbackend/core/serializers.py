@@ -26,9 +26,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         lookup_field='pk'
     )
 
-    users = serializers.HyperlinkedRelatedField(
-        view_name='users:user-detail',
-        lookup_field='pk',
+    users = UserSerializer(
         many=True,
         read_only=True
     )
