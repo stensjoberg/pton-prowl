@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Course, Group, Code
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer, AvailFieldSerializer
+
 
 class CodeSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
@@ -39,9 +40,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
 
+    availability = AvailFieldSerializer()    
+
     class Meta:
         model = Group
-        fields = ['url', 'id', 'course', 'users']
+        fields = ['url', 'id', 'course', 'users', 'availability']
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
@@ -56,9 +59,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
 
-    groups = serializers.HyperlinkedRelatedField(
-        view_name='core:group-detail',
-        lookup_field='pk',
+    groups = GroupSerializer(
         many=True,
         read_only=True
     )

@@ -9,13 +9,18 @@ import './css/skeleton.css'
 
 class NavBar extends Component {
 
+  handleLogout = async (event) => {
+    localStorage.removeItem('token')
+    this.props.history.push('/login')
+  }
+
     render() {
         return (
-            <div className="navbar">
-                <NavLink to={'/courses'} activeClassName="active" key={'home'}>Home</NavLink>
-                <NavLink to={'/user/'+this.props.user.netid} activeClassName="active" className="profilenav" key={'profile'}>Profile</NavLink>
-                <LogoutForm history={this.props.history}/>
-            </div>
+            <ul className="navbar">
+                <li><NavLink to={'/courses'} activeClassName="active" key={'home'}>Home</NavLink></li>
+                <li><NavLink to={'/user/'+this.props.user.netid} activeClassName="active" key={'profile'}>Profile</NavLink></li>
+                <li style={{float: 'right'}}><button onClick={this.handleLogout}>Logout</button></li>
+            </ul>
 
         )
     }

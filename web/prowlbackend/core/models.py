@@ -1,6 +1,7 @@
 from django.db import models
 
 from users.models import User
+from users.models import AvailField
 
 """
     A Princeton course model includes unique id, codes, title and users
@@ -88,6 +89,9 @@ class Group(models.Model):
     users = models.ManyToManyField(User,
                                    related_name='groups',
                                    related_query_name='group')
+
+    # group has availability too
+    availability = AvailField()
 
     def __str__(self):
         return "%s (%s)" % (self.id, self.course.id)

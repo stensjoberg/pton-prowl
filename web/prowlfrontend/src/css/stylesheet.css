@@ -84,41 +84,47 @@
 
 .navbar {
     width: 100%;
-    height : 60px;
     color: white;
     background-color: #EE7F2D;
-    margin-bottom: 20px;
-}
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 
-.navbar a {
+    position: fixed;
+    top: 0;
+}
+.navbar li {
     float: left;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.navbar li a {
+    display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    height: 100%;
 }
 
-.navbar button {
-    height: 100%;
-    float: right;
-    color-background: white;
+.navbar li button {
+    display: block;
     color: white;
+    margin: 0px;
     font-size: 17px;
+    height: 55.2px;
     border: 0px;
 }
 
-.navbar a.active {
+.navbar li a.active {
     background-color: white;
     color: #EE7F2D;
 }
 
-.navbar a:hover {
+.navbar li a:hover {
     color: black;
-}
-.navbar.profilenav {
-    float: right;
 }
 
 .courseitemlist {

@@ -18,7 +18,7 @@ class Core extends Component {
     }
 
     async componentDidMount() {
-
+       
         const user = await getUser()
         this.setState({
             user
@@ -29,7 +29,6 @@ class Core extends Component {
     if (localStorage.getItem('token') == null) {
       return (<Redirect to="/login" />);
     }
-    
       else {
           return (
               <div>
@@ -41,7 +40,6 @@ class Core extends Component {
               </div>
           )
       }
-
   }
 }
 
