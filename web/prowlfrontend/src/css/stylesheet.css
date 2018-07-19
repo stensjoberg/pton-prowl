@@ -53,6 +53,10 @@
   flex-direction: row;
 }
 
+.top {
+  padding-top: 100px;
+}
+
 .coursebox {
   width: 100%;
   justify-content: space-between;
@@ -90,7 +94,6 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-
     position: fixed;
     top: 0;
 }

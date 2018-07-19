@@ -33,11 +33,10 @@ class Core extends Component {
           return (
               <div>
                 <NavBar user={this.state.user} history={this.props.history}/>
-                <div className="flexcontainer hor">
+                <div className="flexcontainer hor top">
                     <CourseItemList className="courseitemlist"/>
-                <Route className="coursedetail" path='/courses/:courseId' component={CourseDetail}/>
-              </div>
-              </div>
+                </div>
+                </div>
           )
       }
   }

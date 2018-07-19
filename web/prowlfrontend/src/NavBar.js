@@ -17,7 +17,7 @@ class NavBar extends Component {
     render() {
         return (
             <ul className="navbar">
-                <li><NavLink to={'/courses'} activeClassName="active" key={'home'}>Home</NavLink></li>
+                <li><NavLink to={'/home'} activeClassName="active" key={'home'}>Home</NavLink></li>
                 <li><NavLink to={'/user/'+this.props.user.netid} activeClassName="active" key={'profile'}>Profile</NavLink></li>
                 <li style={{float: 'right'}}><button onClick={this.handleLogout}>Logout</button></li>
             </ul>
