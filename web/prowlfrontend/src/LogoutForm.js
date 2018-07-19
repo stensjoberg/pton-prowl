@@ -9,7 +9,7 @@ class LogoutForm extends Component {
 
   handleLogout = async (event) => {
     localStorage.removeItem('token')
-    this.props.history.push('/login')
+    this.props.history.push('/welcome')
   }
 
   render() {

@@ -38,6 +38,7 @@ class CourseDetail extends Component {
     else {
       console.log(course)
       return (
+        <div className="left">
         <div className="flexcontainer vert">
           <h1>{course.title}</h1>
           <ul>
@@ -47,6 +48,7 @@ class CourseDetail extends Component {
           </ul>
 
         </div>
+      </div>
       );
     }
   }

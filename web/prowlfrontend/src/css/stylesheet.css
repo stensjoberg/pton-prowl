@@ -1,3 +1,41 @@
+
+#bg {
+  background-color: #57C9FF;
+  height: 810px;
+  width: 100%;
+}
+
+#login {
+  border-radius: 500px;
+  background-color: #EB9569;
+  height: 70px;
+  width: 300px;
+  color: white;
+  font-size: 36px;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+
+.welc {
+  color: white;
+  text-align: center;
+  font-size: 56px;
+}
+
+#loginform {
+  position: fixed;
+
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+
 .flexcontainer {
   display: flex;
   margin: 0 auto;
@@ -22,7 +60,7 @@
 .coursebox button {
     text-decoration: none;
     font-size: 25px;
-      
+
 }
 
 .times {
@@ -33,6 +71,15 @@
 .condenser {
   width: 500px;
   height: 500px;
+}
+
+
+.left {
+  width: 33.33%;
+}
+
+.right {
+  width: 66.66%;
 }
 
 .navbar {
@@ -74,3 +121,6 @@
     float: right;
 }
 
+.courseitemlist {
+  width: 33.33%;
+}

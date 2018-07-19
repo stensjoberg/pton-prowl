@@ -43,7 +43,6 @@ const hourreps = new Map([
 ])
 
 const AVAIL = true
-const UNAVAIL = false
 
 class Availability extends Component {
 

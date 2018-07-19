@@ -41,7 +41,7 @@ class LoginForm extends Component {
       })
       const payload = await res.json()
       localStorage.setItem('token', payload['key'])
-      this.props.history.push('/')
+      this.props.history.push('/home')
     } catch (e) {
       console.log(e)
     }
@@ -49,15 +49,40 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleLogin}>
+
+      <div id="bg">
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+          <div id="center">
+            <p className="welc">Welcome to Prowl</p>
+            <p className="welc">Find study groups!</p>
+        </div>
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+
+      <form id="loginform" onSubmit={this.handleLogin}>
         <label htmlFor="netid"><b>NetID</b></label>
         <input type="text" onChange={this.handleInputChange} placeholder="Enter NetID" name="netid" required />
 
         <label htmlFor="password"><b>Password</b></label>
         <input type="password" onChange={this.handleInputChange} placeholder="Enter Password" name="password" required />
-
-        <input type="submit" value="Login" />
+        <br></br>
+        <center><input type="submit" value="Login" /></center>
       </form>
+    </div>
     );
   }
 }
