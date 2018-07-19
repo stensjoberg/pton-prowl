@@ -95,7 +95,8 @@ class Availability extends Component {
         }
         else {
             return (
-              <div className="condenser">
+              <div className="right">
+                <h4>My Availability</h4>
                 <div className="flexcontainer hor" onMouseUp={(e) => this.handleMouseUp(e)}>
                 {Object.keys(this.state.availability).map((day) => (
                     <div className="flexcontainer vert" key={day}>

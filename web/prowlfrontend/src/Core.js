@@ -29,13 +29,13 @@ class Core extends Component {
     if (localStorage.getItem('token') == null) {
       return (<Redirect to="/login" />);
     }
-    
+
       else {
           return (
               <div>
                 <NavBar user={this.state.user} history={this.props.history}/>
-                <div className="flexcontainer hor">
-                    <CourseItemList className="courseitemlist"/>
+                <div className="flexcontainer hor" className="left">
+                <CourseItemList className="courseitemlist"/>
                 <Route className="coursedetail" path='/courses/:courseId' component={CourseDetail}/>
               </div>
               </div>

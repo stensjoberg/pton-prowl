@@ -72,18 +72,14 @@
   border-radius: 0px;
 }
 
-.condenser {
-  width: 500px;
-  height: 500px;
+.right {
+  position: absolute;
+  left: 45%;
+  text-align: center;
 }
-
 
 .left {
   width: 33.33%;
-}
-
-.right {
-  width: 66.66%;
 }
 
 .navbar {
@@ -128,8 +124,4 @@
 
 .navbar li a:hover {
     color: black;
-}
-
-.courseitemlist {
-  width: 33.33%;
 }
