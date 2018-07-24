@@ -32,7 +32,7 @@ export const styles = {
     },
 
     tigerStripe: {
-        backgroundColor: "#f2f2f2"
+        backgroundColor: "#EAEAEA"
     },
 
     available: {

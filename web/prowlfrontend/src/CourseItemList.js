@@ -22,8 +22,7 @@ class CourseItemList extends Component {
         const searchString = value.toLowerCase()
         let filteredAvailCourses = this.state.availCourses
         filteredAvailCourses = this.state.availCourses.filter(elem =>
-            elem.title.toLowerCase().search(
-                searchString) !== -1
+            (elem.title.toLowerCase().search(searchString) !== -1)
         )
         this.setState({
             searchString,
@@ -73,6 +72,7 @@ class CourseItemList extends Component {
         return (
             <div className="flexcontainer vert" className="left">
             <h3>Enrolled Courses</h3>
+            <div className="whitebg">
             {this.state.enrolledCourses.map((item, i) => (
                 <Link to={'/course/'+item.id} key={item.id}>
                 <CourseItem
@@ -84,10 +84,13 @@ class CourseItemList extends Component {
                 />
                 </Link>
             ))}
+          </div>
+            <br></br>
             <h3>Available Courses</h3>
             <form><fieldset>
             <input type="text" placeholder="Search" onChange={(e) => this.handleSearch(e.target.value)}/>
             </fieldset></form>
+            <div className="whitebg">
             {this.state.filteredAvailCourses.map((item, i) => (
                 <Link to={'/course/'+item.id} key={item.id}>
                 <CourseItem
@@ -99,6 +102,7 @@ class CourseItemList extends Component {
                 />
                 </Link>
             ))}
+          </div>
             </div>
         )
     }

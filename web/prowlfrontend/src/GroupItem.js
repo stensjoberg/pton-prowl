@@ -32,7 +32,7 @@ class GroupItem extends Component {
 
     render() {
         return (
-            <div className="flexcontainer hor coursebox" style={Object.assign({},
+            <div className="left" className="flexcontainer hor coursebox" style={Object.assign({},
                 this.props.i % 2 && styles.tigerStripe
             )}>
             <p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import Radium from 'radium'
+import Helmet from 'react-helmet';
 import NavBar from './NavBar'
 import CourseItemList from './CourseItemList'
 import LogoutForm from './LogoutForm'
@@ -11,6 +12,7 @@ import { getUser } from './helper.js'
 import './css/stylesheet.css';
 import './css/normalize.css';
 import './css/skeleton.css';
+
 
 class Home extends Component {
 
@@ -36,6 +38,7 @@ class Home extends Component {
       else {
           return (
               <div>
+                <Helmet bodyAttributes={{style: 'background-color : #EAEAEA'}}/>
                 <NavBar user={this.state.user} history={this.props.history}/>
                 <div className="flexcontainer hor top">
                     <CourseItemList className="courseitemlist"/>

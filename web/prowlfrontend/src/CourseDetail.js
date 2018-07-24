@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Radium from 'radium'
+import Helmet from 'react-helmet';
 import { getCourse, getUser, getGroupsFromLinks } from './helper'
 import NavBar from './NavBar'
 import GroupItem from './GroupItem'
@@ -27,7 +28,7 @@ class CourseDetail extends Component {
         console.log("handling search...")
         const searchString = value.toLowerCase()
         let filteredAvailGroups = this.state.availGroups
-        filteredAvailGroups = this.state.availGroups.filter(elem => 
+        filteredAvailGroups = this.state.availGroups.filter(elem =>
             elem.id.toString().search(
                 searchString) !== -1
         )
@@ -43,11 +44,11 @@ class CourseDetail extends Component {
         let enrolledGroups = this.state.enrolledGroups
         if(change === ENROLL) {
             enrolledGroups.unshift(availGroups.find(elem => elem.id === id))
-            availGroups = availGroups.filter(elem => elem.id !== id)      
+            availGroups = availGroups.filter(elem => elem.id !== id)
         }
         else { // change is UNENROLL
             availGroups.unshift(enrolledGroups.find(elem => elem.id === id))
-            enrolledGroups = enrolledGroups.filter(elem => elem.id !== id)      
+            enrolledGroups = enrolledGroups.filter(elem => elem.id !== id)
         }
 
         await this.setState({
@@ -114,16 +115,17 @@ class CourseDetail extends Component {
             console.log(this.state.enrolledGroups)
             return (
                 <div>
+                  <Helmet bodyAttributes={{style: 'background-color : #EAEAEA'}}/>
                     <NavBar user={this.state.user} history={this.props.history}/>
-                    <div className="flexcontainer hor top" >
-                    <div className="flexcontainer vert " >
+                    <div className="flexcontainer hor top">
+                    <div className="flexcontainer vert" className="courseCenter">
                     <h1>{course.title}</h1>
                     <ul className="flexontainer hor">
                     {course.codes.map((code) => (
                         <li key={code.id}>{code.id}</li>
                     ))}
                     </ul>
-                    <h3>Enrolled Groups</h3>
+                    <h4>Enrolled Groups</h4>
                     {this.state.enrolledGroups.map((item, i) => (
                         <Link to={'/group/'+item.id} key={item.id}>
                         <GroupItem
@@ -135,12 +137,10 @@ class CourseDetail extends Component {
                         />
                         </Link>
                     ))}
-                    <h3>Available Groups</h3>
+                    <h4>Available Groups</h4>
                     <form><fieldset>
                     <input type="text" placeholder="Search" onChange={(e) => this.handleSearch(e.target.value)}/>
                     </fieldset></form>
-
-                    <h2>Groups</h2>
                     <ul>
                     {this.state.filteredAvailGroups.map((item, i) => (
                         <Link to={'/group/'+item.id} key={item.id}>
