@@ -10,7 +10,7 @@ colorama==0.3.7
 coverage==4.5.1
 cryptography==2.2.2
 debtags==2.1
-Django==2.0.7
+Django==2.2.13
 django-cas-ng==3.5.9
 django-cors-headers==2.3.0
 django-rest-auth==0.9.3
